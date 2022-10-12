@@ -7,7 +7,7 @@ const router = Router();
 
 const getData = async (requestURL: string) => {
   const result = await (await fetch(requestURL)).text();
-  console.log("Fetch Result is ", result);
+  //console.log("Fetch Result is ", result.substring(0, 300));
   return result;
   //return "Test data";
 };
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   const result = await getData(
     "http://react.localhost.com:8000/csv/ZoneTemp.csv"
   );
-  console.log("Return Result is ", result);
+  console.log("Return Result is (first 300 chars) ", result.substring(0, 300));
   res.send(result);
   //res.send("List of Charts.");
 });
