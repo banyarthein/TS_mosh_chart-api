@@ -3,11 +3,17 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/:filename", (req, res) => {
-  const rootdirArr: string[] = __dirname.split("\\");
+  let delimiter: string = "\\";
+
+  if (__dirname.startsWith("/usr")) {
+    delimiter = "/";
+  }
+
+  const rootdirArr: string[] = __dirname.split(delimiter);
   rootdirArr.pop();
-  const rootDir = rootdirArr.join("\\");
+  const rootDir = rootdirArr.join(delimiter);
   console.log("rootdir path", rootDir);
-  const file = `${rootDir}\\data\\${req.params.filename}`;
+  const file = `${rootDir}${delimiter}data${delimiter}${req.params.filename}`;
   console.log("Downloading file", file);
   res.download(file);
   //res.status(202).send();

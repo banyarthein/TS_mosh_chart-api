@@ -3,7 +3,8 @@ import chartRouters from "./routers/chartrouter";
 import csvRouters from "./routers/csvroutes";
 
 const PORT = 8000;
-const HOST_NAME = "react.localhost.com";
+//const HOST_NAME = "react.localhost.com";
+const HOST_NAME = "localhost";
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 //Added for CORS issue.
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "http://react.localhost.com");
 
   // Request methods you wish to allow
   res.setHeader(
@@ -43,8 +44,12 @@ app.get("/", (req, res) => {
   res.send(`Welcome to typescript server from http://${HOST_NAME}:${PORT}`);
 });
 
-app.listen(PORT, HOST_NAME, () => {
-  console.log(
-    `Server is started now. Listening on http://${HOST_NAME}:${PORT}`
-  );
+// app.listen(PORT, HOST_NAME, () => {
+//   console.log(
+//     `Server is started now. Listening on http://${HOST_NAME}:${PORT}`
+//   );
+// });
+
+app.listen(PORT, () => {
+  console.log(`Server is started now. Listening on http://localhost:${PORT}`);
 });
